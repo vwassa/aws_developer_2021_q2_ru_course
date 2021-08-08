@@ -47,6 +47,14 @@ fun Route.products() {
     }
 }
 
+fun Routing.healthCheck(){
+    route("health"){
+        get("check"){
+            call.respond(HttpStatusCode.OK)
+        }
+    }
+}
+
 fun Routing.apiRoute() {
     authenticate("myBasicAuth") {
         route("/api/v1") {
@@ -57,6 +65,7 @@ fun Routing.apiRoute() {
 
 fun Application.registerCustomerRoutes() {
     routing {
+        healthCheck()
         apiRoute()
     }
 }
